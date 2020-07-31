@@ -4,23 +4,41 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+import org.springframework.stereotype.Repository;
+
 import com.dangjogvara.demo.model.Person;
 
-public interface PersonDao {
+@Repository("postgres")
+public class PersonDao implements IPersonDao {
 
-	int insertPerson(UUID id, Person person);
-
-	default int insertPerson(Person person) {
-		UUID id = UUID.randomUUID();
-		return insertPerson(id, person);
+	@Override
+	public int insertPerson(UUID id, Person person) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
-	List<Person> selectAllPeople();
+	@Override
+	public List<Person> selectAllPeople() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
-	Optional<Person> selectPersonById(UUID id);
+	@Override
+	public Optional<Person> selectPersonById(UUID id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
-	int deletePersonById(UUID id);
+	@Override
+	public int deletePersonById(UUID id) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 
-	int updatePersonById(UUID id, Person person);
+	@Override
+	public int updatePersonById(UUID id, Person person) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 
 }

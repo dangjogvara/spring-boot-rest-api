@@ -8,16 +8,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-import com.dangjogvara.demo.dao.PersonDao;
+import com.dangjogvara.demo.dao.IPersonDao;
 import com.dangjogvara.demo.model.Person;
 
 @Service
 public class PersonService {
 
-	public PersonDao personDao;
+	public IPersonDao personDao;
 
 	@Autowired
-	public PersonService(@Qualifier("fakeDao") PersonDao personDao) {
+	public PersonService(@Qualifier("postgres") IPersonDao personDao) {
 		this.personDao = personDao;
 	}
 

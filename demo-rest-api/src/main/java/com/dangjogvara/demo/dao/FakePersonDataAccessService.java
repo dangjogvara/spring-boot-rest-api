@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.dangjogvara.demo.model.Person;
 
 @Repository("fakeDao")
-public class FakePersonDataAccessService implements PersonDao {
+public class FakePersonDataAccessService implements IPersonDao {
 
 	private static List<Person> DB = new ArrayList<>();
 
