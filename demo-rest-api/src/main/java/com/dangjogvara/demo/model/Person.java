@@ -1,4 +1,4 @@
-package com.dangjogvara.demo.models;
+package com.dangjogvara.demo.model;
 
 import java.util.UUID;
 
