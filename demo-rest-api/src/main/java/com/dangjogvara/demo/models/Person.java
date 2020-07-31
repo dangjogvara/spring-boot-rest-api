@@ -8,7 +8,6 @@ public class Person {
 	private final String name;
 
 	public Person(UUID id, String name) {
-		super();
 		this.id = id;
 		this.name = name;
 	}
