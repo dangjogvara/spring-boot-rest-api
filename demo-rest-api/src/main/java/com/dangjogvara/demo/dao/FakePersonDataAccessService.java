@@ -19,4 +19,9 @@ public class FakePersonDataAccessService implements PersonDao {
 		return 1;
 	}
 
+	@Override
+	public List<Person> selectAllPeople() {
+		return DB;
+	}
+
 }
