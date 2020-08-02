@@ -13,12 +13,8 @@ import com.dangjogvara.demo.model.Person;
 @Repository("postgres")
 public class PersonDao implements IPersonDao {
 
-	private final JdbcTemplate jdbcTemplate;
-
 	@Autowired
-	public PersonDao(JdbcTemplate jdbcTemplate) {
-		this.jdbcTemplate = jdbcTemplate;
-	}
+	JdbcTemplate jdbcTemplate;
 
 	@Override
 	public int insertPerson(UUID id, Person person) {
