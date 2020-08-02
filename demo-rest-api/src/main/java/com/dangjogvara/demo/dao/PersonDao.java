@@ -25,9 +25,9 @@ public class PersonDao implements IPersonDao {
 	@Override
 	public List<Person> selectAllPeople() {
 		final String sql = "SELECT id, name FROM person";
-		return jdbcTemplate.query(sql, (resultSet, i) -> {
-			UUID id = UUID.fromString(resultSet.getString("id"));
-			String name = resultSet.getString("name");
+		return jdbcTemplate.query(sql, (rs, i) -> {
+			UUID id = UUID.fromString(rs.getString("id"));
+			String name = rs.getString("name");
 			return new Person(id, name);
 		});
 	}
