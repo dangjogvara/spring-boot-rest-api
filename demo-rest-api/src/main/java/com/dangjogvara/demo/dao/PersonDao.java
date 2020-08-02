@@ -35,12 +35,16 @@ public class PersonDao implements IPersonDao {
 	@Override
 	public Optional<Person> selectPersonById(UUID id) {
 		final String sql = "SELECT id, name FROM person WHERE id = ?";
-		Person person = jdbcTemplate.queryForObject(sql, new Object[] { id }, (resultSet, i) -> {
-			UUID personId = UUID.fromString(resultSet.getString("id"));
-			String name = resultSet.getString("name");
-			return new Person(personId, name);
+		Person newPerson = jdbcTemplate.queryForObject(sql, new Object[] { id }, (rs, i) -> {
+			// UUID personId = UUID.fromString(resultSet.getString("id"));
+			// String name = resultSet.getString("name");
+			Person person = new Person();
+			person.setId(UUID.fromString(rs.getString("id")));
+			person.setName(rs.getString("name"));
+			return person;
+			// return new Person(personId, name);
 		});
-		return Optional.ofNullable(person);
+		return Optional.ofNullable(newPerson);
 	}
 
 	@Override
