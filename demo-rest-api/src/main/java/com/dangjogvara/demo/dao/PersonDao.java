@@ -38,8 +38,13 @@ public class PersonDao implements IPersonDao {
 
 	@Override
 	public Optional<Person> selectPersonById(UUID id) {
-		// TODO Auto-generated method stub
-		return null;
+		final String sql = "SELECT id, name FROM person WHERE id = ?";
+		Person person = jdbcTemplate.queryForObject(sql, new Object[] { id }, (resultSet, i) -> {
+			UUID personId = UUID.fromString(resultSet.getString("id"));
+			String name = resultSet.getString("name");
+			return new Person(personId, name);
+		});
+		return Optional.ofNullable(person);
 	}
 
 	@Override
