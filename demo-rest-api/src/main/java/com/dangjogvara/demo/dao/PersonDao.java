@@ -4,12 +4,21 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.dangjogvara.demo.model.Person;
 
 @Repository("postgres")
 public class PersonDao implements IPersonDao {
+
+	private final JdbcTemplate jdbcTemplate;
+
+	@Autowired
+	public PersonDao(JdbcTemplate jdbcTemplate) {
+		this.jdbcTemplate = jdbcTemplate;
+	}
 
 	@Override
 	public int insertPerson(UUID id, Person person) {
@@ -19,8 +28,12 @@ public class PersonDao implements IPersonDao {
 
 	@Override
 	public List<Person> selectAllPeople() {
-		// TODO Auto-generated method stub
-		return null;
+		final String sql = "SELECT id, name FROM person";
+		return jdbcTemplate.query(sql, (resultSet, i) -> {
+			UUID id = UUID.fromString(resultSet.getString("id"));
+			String name = resultSet.getString("name");
+			return new Person(id, name);
+		});
 	}
 
 	@Override
